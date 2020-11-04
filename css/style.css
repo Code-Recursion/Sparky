@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* since full is 100% and by default 1rem is 16px, now 10px = 1rem */
+  font-size: 62.5%;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.heading {
+  font-size:5rem;
+  text-align: center;
+}
+
+.main_div {
+  height: 100vh;
+  width: 100vw;
+  background: #f1f1f1;
+
+  /* display:flex;
+  justify-content: center;
+  align-items: center; */
+
+  display: grid;
+  place-items: center;
+}
+
+.music_container {
+  width: 35rem;
+  height: 55rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1rem rgb(0, 0, 0, 0.1);
+  padding: 3rem;
+  text-align: center;
+
+  /* Reflection */
+  -webkit-box-reflect: below 2rem linear-gradient(transparent, transparent, #fff);
+}
+
+.music_container #title {
+  font-size: 5rem;
+  color:lightgrey;
+}
+.music_container #artist {
+  font-size: 2rem;
+}
+.img_container {
+  width: 25rem;
+  height: 25rem;
+  margin: 4rem auto;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+}
+.music_controls {
+  width: 20rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 6rem auto;
+  align-items: center;
+}
+.music_controls #play {
+  border-radius: 100%;
+  width: 5rem;
+  height: 5rem;
+  background-color: #000;
+  color:#fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music_controls .fas {
+  font-size: 2rem;
+  cursor: pointer;
+}
+.music_controls .fas:hover {
+  color: lightgrey;
+}
+
+.animate {
+  animation: rotatePlayer 4s linear infinite;
+}
+
+@keyframes rotatePlayer {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} 
