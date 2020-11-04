@@ -1,11 +1,13 @@
-// const img = document.querySelector("img");
-const img = document.getElementById("banner");
 const music = document.querySelector("audio");
-const play = document.getElementById("play");
 
+const img = document.getElementById("cover");
 const title = document.getElementById("title");
 const artist = document.getElementById("artist");
 
+let current_time = document.getElementById("current_time");
+const total_duration = document.getElementById("duration");
+
+const play = document.getElementById("play");
 const next = document.getElementById("next");
 const prev  = document.getElementById("prev");
 
@@ -30,19 +32,21 @@ const songs = [
 let isPlaying = false;
 
 const playMusic = () => {
-    // for play functionality
+    // play functionality
     music.play();
     isPlaying = true;
     play.classList.replace('fa-play', 'fa-pause');
     img.classList.add('animate');
+    console.log("Music Playing");
 }
 
 const pauseMusic = () => {
-    // for pasuse functionality
+    // pause functionality
     isPlaying = false;
     music.pause();
     play.classList.replace('fa-pause', 'fa-play');
     img.classList.remove('animate');
+    console.log("Music Paused");
 };
 
 play.addEventListener('click', () =>{
@@ -75,6 +79,54 @@ const prevSong = () => {
     loadSongs(songs[songIndex]);
     playMusic();
 };
+
+// progress bar start
+
+    let progress = document.getElementById("progress");
+
+    music.addEventListener("timeupdate", (event) => {
+        // console.log(event);
+        const {currentTime, duration} = event.srcElement;
+        
+        // console.log("currentTime : ", currentTime);
+        // console.log("duration : ", duration);
+
+        let progress_time = Math.round((currentTime / duration ) * 100);
+        // console.log("progress : ", Math.ceil(progress_time));
+        
+        progress.style.width = `${progress_time}%`;
+        
+        // updaing time start
+
+
+        // Current Duration
+        let current_min = Math.round(currentTime / 60);
+        let current_sec = Math.round(currentTime % 60);
+        
+        console.log("current_min", current_min);
+        console.log("current_sec", current_sec);
+        if(currentTime) 
+        {
+            if(current_sec < 10)
+                current_time.textContent = `${current_min}:0${current_sec}`;
+            else current_time.textContent = `${current_min}:${current_sec}`;
+        }
+
+        // Total Duration
+        let duration_min = Math.round(duration / 60);
+        let duration_sec = Math.round(duration % 60);
+        
+        console.log("duration_min", duration_min);
+        console.log("duration_sec", duration_sec);
+        if(duration) 
+        {
+            total_duration.textContent = `${duration_min}:${duration_sec}`;
+        }
+    })
+// progress bar end
+
+// playing next song if current song ends
+music.addEventListener("ended", nextSong);
 
 next.addEventListener('click', nextSong);
 prev.addEventListener('click', prevSong);
