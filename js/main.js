@@ -1,4 +1,5 @@
-const img = document.querySelector("img");
+// const img = document.querySelector("img");
+const img = document.getElementById("banner");
 const music = document.querySelector("audio");
 const play = document.getElementById("play");
 
